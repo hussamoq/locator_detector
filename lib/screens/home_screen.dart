@@ -210,7 +210,7 @@ class HomeScreen extends StatelessWidget {
                     //Map<String, dynamic> facultyInfo = responseData['faculty'];
                     //List<dynamic> employeeInfo = responseData['employee'];
 
-                    if (responseData['employee']['name'] == 'None') {
+                    if (responseData['employee'][0]['name'] == 'None') {
                       await showDialog(
                           context: context,
                           builder: (ctx) {
@@ -237,11 +237,13 @@ class HomeScreen extends StatelessWidget {
                           responseData['faculty']['established_date']!
                               .toString(),
                         ],
-                      ).then((_) {
-                        //Empties the prvider's lists/containers after user steps
-                        //back to the home screen
-                        facultyInformationProvider.emptyList();
-                      });
+                      ).then(
+                        (_) {
+                          //Empties the provider's lists/containers after user steps
+                          //back to the home screen
+                          facultyInformationProvider.emptyList();
+                        },
+                      );
 
                       //provide the provider with the necessary employee objects
                       for (Map<String, dynamic> singleEmployee
