@@ -2,7 +2,7 @@ import '../models/faculty_list.dart';
 import '../models/faculty_location.dart';
 
 class FacultyListData {
-  static const facultyLists = <FacultyList>[
+  static List<FacultyList> facultyLists = <FacultyList>[
     FacultyList(
         name: 'King Abdullah II School For Information Technology',
         location: FacultyLocation(35.87297, 32.01400)),

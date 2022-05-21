@@ -61,8 +61,12 @@ class FacultyListItem extends StatelessWidget {
             }
 
             if (facultyName == 'Bansor') {
+              var arbitraryLocation = FacultyLocation(
+                currentPosition!.longitude,
+                currentPosition.latitude + 0.0005,
+              );
               Navigator.of(context).pushReplacementNamed(MapScreen.routeName,
-                  arguments: [currentPosition, currentPosition, facultyName]);
+                  arguments: [currentPosition, arbitraryLocation, facultyName]);
 
               return;
             }
