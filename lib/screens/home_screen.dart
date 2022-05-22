@@ -1,3 +1,5 @@
+// ignore_for_file: constant_identifier_names
+
 import 'package:flutter/material.dart';
 import 'package:locator_detector/models/employee.dart';
 import 'package:locator_detector/provider/faculty_information_provider.dart';
@@ -14,6 +16,15 @@ import './faculties_list_screen.dart';
 import './faculty_information_screen.dart';
 
 import '../provider/faculty_list_povider.dart';
+
+import '../screens/no_detection_faculty_list_screen.dart';
+
+import '../widgets/faculty_item.dart';
+
+const SECRET_TOKEN = 'hashtag@#ploaanhyvybal*1288mmc32*())(!';
+const URI_DETECTION_LINK = 'https://locator.loophole.site/core/emp/';
+const URI_FACULTY_LINK = 'https://locator.loophole.site/core/facultylist/';
+const URI_EMPLOYEE_LINK = 'https://locator.loophole.site/core/employeelist/';
 
 class HomeScreen extends StatelessWidget {
   @override
@@ -51,11 +62,13 @@ class HomeScreen extends StatelessWidget {
     Future<Map<String, dynamic>?> _sendAndReturnResponse(XFile image) async {
       var request = http.MultipartRequest(
         'POST',
-        Uri.parse('https://locator.loophole.site/core/emp/'),
+        Uri.parse(URI_DETECTION_LINK),
       );
       request.headers.addAll({
         'method': 'POST',
         'accept': 'application/json',
+        'authentication-token': SECRET_TOKEN,
+        'scheme': 'https'
       });
       request.files.add(
         await http.MultipartFile.fromPath('image', File(image.path).path),
@@ -94,6 +107,61 @@ class HomeScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Home Screen'),
+        actions: [
+          IconButton(
+            icon: const Icon(Icons.list),
+            onPressed: () async {
+              Navigator.of(context).push(
+                MaterialPageRoute(
+                  builder: (ctx) => const Scaffold(
+                    body: Center(
+                      child: CircularProgressIndicator(),
+                    ),
+                  ),
+                ),
+              );
+
+              //store the faculties inside this list
+              List<FacultyItem> faculties = [];
+              try {
+                http.Response response = await http.get(
+                  Uri.parse(URI_FACULTY_LINK),
+                  headers: {
+                    'method': 'GET',
+                    'accept': 'application/json',
+                    'authentication-token': SECRET_TOKEN,
+                  },
+                ).timeout(const Duration(seconds: 15), onTimeout: null);
+
+                //receive a list of dictionaries
+                for (dynamic faculty in jsonDecode(response.body)) {
+                  faculties.add(FacultyItem(faculty['name'], faculty['id']));
+                }
+              } catch (error) {
+                showDialog(
+                    context: context,
+                    builder: (ctx) {
+                      return const AlertDialog(
+                        title: Text('SERVER ERROR'),
+                        content: Text(
+                            'An error from our end has occured, please try again later.'),
+                      );
+                    });
+
+                Navigator.of(context).pop();
+                return;
+              }
+
+              //Replace loading screen with faculties screen
+              Navigator.of(context).pushReplacement(
+                MaterialPageRoute(
+                  builder: (ctx) => NoDetectionFacultyListScreen(faculties),
+                ),
+              );
+            },
+            tooltip: 'Display information about a faculty without detection',
+          ),
+        ],
         centerTitle: true,
       ),
       body: SingleChildScrollView(

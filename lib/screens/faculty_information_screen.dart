@@ -67,7 +67,7 @@ class FacultyInformationScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
-        title: Text(facultyName!),
+        title: FittedBox(child: Text(facultyName!)),
       ),
       body: Container(
         width: double.infinity,
