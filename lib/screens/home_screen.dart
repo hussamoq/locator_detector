@@ -131,14 +131,17 @@ class HomeScreen extends StatelessWidget {
                     'accept': 'application/json',
                     'authentication-token': SECRET_TOKEN,
                   },
-                ).timeout(const Duration(seconds: 15), onTimeout: null);
+                ).timeout(
+                  const Duration(seconds: 15),
+                  onTimeout: () => throw "Connection timed out",
+                );
 
                 //receive a list of dictionaries
                 for (dynamic faculty in jsonDecode(response.body)) {
                   faculties.add(FacultyItem(faculty['name'], faculty['id']));
                 }
               } catch (error) {
-                showDialog(
+                await showDialog(
                     context: context,
                     builder: (ctx) {
                       return const AlertDialog(
@@ -148,6 +151,7 @@ class HomeScreen extends StatelessWidget {
                       );
                     });
 
+                //get rid of loading screen after displaying error
                 Navigator.of(context).pop();
                 return;
               }
@@ -316,16 +320,18 @@ class HomeScreen extends StatelessWidget {
                       //provide the provider with the necessary employee objects
                       for (Map<String, dynamic> singleEmployee
                           in responseData['employee']) {
-                        facultyInformationProvider.addEmployee(Employee(
-                          firstName: singleEmployee['first_name']!,
-                          lastName: singleEmployee['last_name']!,
-                          officeLocation:
-                              (singleEmployee['office_place1'] as String)
-                                      .isEmpty
-                                  ? singleEmployee['office_place']
-                                  : singleEmployee['office_place1'],
-                          departmentName: singleEmployee['name'],
-                        ));
+                        facultyInformationProvider.addEmployee(
+                          Employee(
+                            firstName: singleEmployee['first_name']!,
+                            lastName: singleEmployee['last_name']!,
+                            officeLocation:
+                                (singleEmployee['office_place1'] as String)
+                                        .isEmpty
+                                    ? singleEmployee['office_place']
+                                    : singleEmployee['office_place1'],
+                            departmentName: singleEmployee['name'],
+                          ),
+                        );
                       }
                     } catch (error) {
                       await showDialog(
