@@ -43,8 +43,8 @@ class HomeScreen extends StatelessWidget {
         builder: (ctx) => AlertDialog(
           title: const Padding(
             padding: EdgeInsets.only(bottom: 15),
-            child:
-                Text('Take a clear picture of the faculty\'s FRONT EXTERIOR'),
+            child: Text(
+                'Take a clear picture of the faculty\'s FRONT EXTERIOR ENTRANCE'),
           ),
           actions: [
             TextButton(

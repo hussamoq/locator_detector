@@ -24,9 +24,11 @@ class FacultyInformationScreen extends StatelessWidget {
       return Column(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          Text(
-            'Current dean: $facultyDean',
-            style: const TextStyle(fontSize: 20),
+          FittedBox(
+            child: Text(
+              'Current dean: $facultyDean',
+              style: const TextStyle(fontSize: 20),
+            ),
           ),
           Text(
             'Established in $establishment',
