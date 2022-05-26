@@ -5,6 +5,7 @@ import 'package:http/http.dart' as http;
 import '../provider/faculty_information_provider.dart';
 
 import '../screens/employee_list_screen.dart';
+import '../screens/faculty_information_screen.dart';
 import 'dart:convert';
 
 import '../models/employee.dart';
@@ -53,9 +54,28 @@ class FacultyItem extends StatelessWidget {
               ).timeout(const Duration(seconds: 15),
                   onTimeout: () => throw "Connection timed out");
 
+              //decode json before using it
+              var responseData = jsonDecode(response.body);
+
+              Navigator.of(context).pushReplacementNamed(
+                FacultyInformationScreen.routeName,
+                arguments: <String>[
+                  responseData['faculty']['name']!,
+                  responseData['faculty']['faculty_dean']!,
+                  responseData['faculty']['faculty_info']!,
+                  responseData['faculty']['established_date']!.toString(),
+                ],
+              ).then(
+                (_) {
+                  //Empties the provider's lists/containers after user steps
+                  //back to the home screen
+                  facultyInformationProvider.emptyList();
+                },
+              );
+
               //provide the provider with the necessary employee objects
               for (Map<String, dynamic> singleEmployee
-                  in jsonDecode(response.body)) {
+                  in responseData['employee']) {
                 facultyInformationProvider.addEmployee(
                   Employee(
                     firstName: singleEmployee['first_name']!,
@@ -83,11 +103,11 @@ class FacultyItem extends StatelessWidget {
               return;
             }
 
-            //Push employee screen after being done fetching data
-            Navigator.of(context)
-                .pushReplacementNamed(EmployeeListScreen.routeName)
-                //Emplty list after coming back from screen
-                .then((_) => facultyInformationProvider.emptyList());
+            // //Push employee screen after being done fetching data
+            // Navigator.of(context)
+            //     .pushReplacementNamed(EmployeeListScreen.routeName)
+            //     //Emplty list after coming back from screen
+            //     .then((_) => facultyInformationProvider.emptyList());
           },
         ),
         const Divider(
