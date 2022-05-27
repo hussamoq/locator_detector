@@ -219,7 +219,7 @@ class FacultyListData {
       location: FacultyLocation(35.87345882801009, 32.01110412191301),
     ),
     FacultyList(
-      name: 'Book Center',
+      name: 'Book Center - UBCC',
       location: FacultyLocation(35.871635596439695, 32.01120476258325),
     ),
     FacultyList(
@@ -293,6 +293,54 @@ class FacultyListData {
     FacultyList(
       name: 'Airfield',
       location: FacultyLocation(35.87233427655271, 32.01620505335513),
+    ),
+    FacultyList(
+      name: 'North gate',
+      location: FacultyLocation(35.86919, 32.01991),
+    ),
+    FacultyList(
+      name: 'South gate',
+      location: FacultyLocation(35.87596, 32.00523),
+    ),
+    FacultyList(
+      name: 'Scientific Halls Complex gate',
+      location: FacultyLocation(35.876253689762706, 32.014376877186336),
+    ),
+    FacultyList(
+      name: 'Engineering gate',
+      location: FacultyLocation(35.87721, 32.01239),
+    ),
+    FacultyList(
+      name: 'Main gate',
+      location: FacultyLocation(35.86885, 32.01505),
+    ),
+    FacultyList(
+      name: 'Main gate parking',
+      location: FacultyLocation(35.86850, 32.01604),
+    ),
+    FacultyList(
+      name: 'Agriculture gate',
+      location: FacultyLocation(35.87117, 32.01129),
+    ),
+    FacultyList(
+      name: 'Foreign Languages Center',
+      location: FacultyLocation(35.86921, 32.01746),
+    ),
+    FacultyList(
+      name: 'Community Services',
+      location: FacultyLocation(35.87098, 32.01433),
+    ),
+    FacultyList(
+      name: 'Arab Bank ATM',
+      location: FacultyLocation(35.87019, 32.01582),
+    ),
+    FacultyList(
+      name: 'Clock Tower',
+      location: FacultyLocation(35.87075, 32.01631),
+    ),
+    FacultyList(
+      name: 'Main prayer',
+      location: FacultyLocation(35.87040, 32.01501),
     ),
   ];
 
@@ -477,8 +525,9 @@ class FacultyListData {
     'center   ': facultyLists[53],
     'enterprenuership': facultyLists[53],
     //book center
-    'book center': facultyLists[54],
+    'book center - ubcc': facultyLists[54],
     'center    ': facultyLists[54],
+    'bookshop': facultyLists[54],
     //graduate studies
     'graduate studies': facultyLists[55],
     'studies': facultyLists[55],
@@ -534,5 +583,38 @@ class FacultyListData {
     'bansor': facultyLists[71],
     //airfield
     'airfield': facultyLists[72],
+    //north gate
+    'north gate': facultyLists[73],
+    'gate  ': facultyLists[73],
+    //south gate
+    'south gate': facultyLists[74],
+    'gate ': facultyLists[74],
+    //scientific gate
+    'scientific halls complex gate': facultyLists[75],
+    //engineering gate
+    'engineering gate': facultyLists[76],
+    //main gate
+    'main gate': facultyLists[77],
+    'gate   ': facultyLists[77],
+    //main gate parking
+    'parking - main gate': facultyLists[78],
+    //agriculture gate
+    'agriculture gate': facultyLists[79],
+    'gate    ': facultyLists[79],
+    //foreign languages center
+    'foreign languages center': facultyLists[80],
+    'center       ': facultyLists[80],
+    //community services
+    'community services': facultyLists[81],
+    'services': facultyLists[81],
+    //arab ATM
+    'arab bank atm': facultyLists[82],
+    'atm': facultyLists[82],
+    //clock tower
+    'clock tower': facultyLists[83],
+    'tower': facultyLists[83],
+    //Main prayer
+    'main prayer': facultyLists[84],
+    'prayer': facultyLists[84],
   };
 }
