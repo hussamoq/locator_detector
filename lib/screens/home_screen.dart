@@ -23,7 +23,7 @@ import '../widgets/faculty_item.dart';
 
 const SECRET_TOKEN = 'hashtag@#ploaanhyvybal*1288mmc32*())(!';
 const URI_DETECTION_LINK = 'https://locator.loophole.site/core/emp/';
-const URI_FACULTY_LINK = 'https://locator.loophole.site/core/facultylist/';
+const URI_FACULTY_LINK = 'https://locator.loophole.site/core/facultyList/';
 const URI_EMPLOYEE_LINK = 'https://locator.loophole.site/core/employeelist/';
 
 class HomeScreen extends StatelessWidget {
@@ -61,11 +61,11 @@ class HomeScreen extends StatelessWidget {
     //This function sends the image and wait for a response from server
     Future<Map<String, dynamic>?> _sendAndReturnResponse(XFile image) async {
       var request = http.MultipartRequest(
-        'POST',
+        'GET',
         Uri.parse(URI_DETECTION_LINK),
       );
       request.headers.addAll({
-        'method': 'POST',
+        'method': 'GET',
         'accept': 'application/json',
         'authentication-token': SECRET_TOKEN,
         'scheme': 'https'
