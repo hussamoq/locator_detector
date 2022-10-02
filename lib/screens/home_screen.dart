@@ -23,6 +23,7 @@ import '../widgets/faculty_item.dart';
 
 const SECRET_TOKEN = 'hashtag@#ploaanhyvybal*1288mmc32*())(!';
 const URI_DETECTION_LINK = 'https://locator.loophole.site/core/emp/';
+
 const URI_FACULTY_LINK = 'https://locator.loophole.site/core/facultylist/';
 const URI_EMPLOYEE_LINK = 'https://locator.loophole.site/core/employeelist/';
 
